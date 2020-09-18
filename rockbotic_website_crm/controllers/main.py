@@ -92,11 +92,19 @@ class StudentSignUp(http.Controller):
             '_kwargs': kwargs,
         }
 
-    def get_contactus_response(self, values, kwargs):
-        values = self.preRenderThanks(values, kwargs)
-        return request.website.render(
-            kwargs.get("view_callback",
-                       "rockbotic_website_crm.student_signup_thanks"), values)
+    # def get_contactus_response(self, values, kwargs):
+    #     values = self.preRenderThanks(values, kwargs)
+    #     return request.website.render(
+    #         kwargs.get("view_callback",
+    #                    "rockbotic_website_crm.student_signup_thanks"), values)
+
+    def get_contacus_response(self, values, kwargs):
+        return {
+            'type': 'ir.actions.act_url',
+            'url': 'https://rockbotic.com/gracias-extraescolares/',
+            'target': 'self',
+            'res_id': self.id,
+        }
 
     @http.route(['/crm/student_signup'],
                 type='http', auth="public", website=True)
